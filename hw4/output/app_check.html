@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs: App Check (Problem 11)</title>
+<style>
+  :root { --accent: #00356b; --accent-soft: #286dc0; --text: #0f1b2d; --muted: #5b6b80; --border: #dbe3ee; --panel: #f3f6fb; --pass: #1b7f3b; --pass-bg: #e7f5ec; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--text); background: #fff; line-height: 1.55; }
+  main { max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-size: 2rem; margin: 0 0 .25rem; letter-spacing: -.02em; }
+  h1 span { color: var(--accent); }
+  h2 { font-size: 1.35rem; margin: 2.75rem 0 .75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+  h3 { font-size: 1rem; margin: 1.25rem 0 .4rem; }
+  p.lead { color: var(--muted); margin: 0 0 1.5rem; }
+  a { color: var(--accent-soft); }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 1rem; font-size: .93rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--panel); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .pass { display: inline-block; background: var(--pass-bg); color: var(--pass); font-weight: 700; font-size: .78rem; padding: .15rem .55rem; border-radius: 999px; white-space: nowrap; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin: 1rem 0 0; }
+  .meta div { background: var(--panel); border-radius: 10px; padding: .7rem .9rem; font-size: .88rem; }
+  .meta b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  figure { margin: 1rem 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { padding: .75rem 1rem; background: var(--panel); font-size: .92rem; }
+  figcaption b { color: var(--accent); }
+  .ask { background: var(--accent); color: #fff; border-radius: 14px 14px 4px 14px; padding: .5rem .85rem; display: inline-block; margin: .25rem 0; }
+  .reply { background: var(--panel); border: 1px solid var(--border); border-radius: 14px 14px 14px 4px; padding: .65rem .9rem; white-space: pre-wrap; font-size: .92rem; margin: .4rem 0 1rem; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .84rem; }
+  pre { background: #0f1b2d; color: #e6edf6; padding: .8rem 1rem; border-radius: 10px; overflow-x: auto; }
+  .ok { color: var(--pass); font-weight: 700; }
+  ol li, ul li { margin: .25rem 0; }
+  .toc a { text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Campus Customs: <span>App Check</span></h1>
+<p class="lead">Problem 11, Site testing. The live website was driven like a real shopper in Google Chrome. Each check has a screenshot, a short caption, what we expected vs. what appeared, and an independent SQL check against <code>data/campus_customs.db</code>.</p>
+
+<table>
+  <tr><th>#</th><th>Check</th><th>What the screenshot shows</th><th>Result</th></tr>
+  <tr><td>1</td><td><a href="#check-1">Chat checks the inventory level on an item</a></td><td>On the Yale Dad Crewneck page, Audrey gives the exact units left per size and says plainly which sizes are sold out</td><td><span class="pass">PASS</span></td></tr>
+  <tr><td>2</td><td><a href="#check-2">Dynamic search result cards after a category question</a></td><td>"What crewnecks do you have?" fills the page with all 29 crewneck cards, plus 3 picks as cards in the chat</td><td><span class="pass">PASS</span></td></tr>
+  <tr><td>3</td><td><a href="#check-3">Usability feature from Problem 9: sort &amp; filter sidebar</a></td><td>Sort by price + Hoodies + Navy + size L → 12 navy hoodies in stock in L, priced high to low, on white equal-size cards</td><td><span class="pass">PASS</span></td></tr>
+</table>
+
+<div class="meta">
+  <div><b>Site tested</b>http://localhost:5173 (React + Vite) → FastAPI on :8000</div>
+  <div><b>Browser</b>Google Chrome 154 (headless), 1440×900</div>
+  <div><b>Shopper</b>Guest (not logged in), fresh chat for each check</div>
+  <div><b>Run</b>7 Oct 2026 · <code>npm run app-check</code></div>
+</div>
+
+<!-- ===================================================== 1 -->
+<h2 id="check-1">1. Chat checks the inventory level on an item <span class="pass">PASS</span></h2>
+<p><b>Steps:</b> open the <b>Yale Dad Crewneck</b> product page → open the chat (bottom right) → ask:</p>
+<div class="ask">How many of these are left in each size?</div>
+<figure>
+  <a href="app_check_images/inventory.png"><img src="app_check_images/inventory.png" alt="Yale Dad Crewneck page with the chat open showing units left per size"></a>
+  <figcaption><b>Caption:</b> Audrey knows which item the shopper is viewing ("these") and reads the real inventory: XS 15, S 8, XXL 15, and <b>M, L and XL clearly marked sold out</b>, 38 units in total. The product page agrees: M, L and XL are crossed out and it says "38 in stock across all sizes".</figcaption>
+</figure>
+<p>Audrey's full reply (answered in 2.8 s):</p>
+<div class="reply">For the Yale Dad Crewneck, we have:
+- XS: 15
+- S: 8
+- M: sold out
+- L: sold out
+- XL: sold out
+- XXL: 15
+
+That’s 38 units in total, with M, L, and XL currently sold out.</div>
+<table>
+  <tr><th>What we checked</th><th>Expected (database)</th><th>On screen</th><th></th></tr>
+  <tr><td>Units per size</td><td>XS 15 · S 8 · M 0 · L 0 · XL 0 · XXL 15</td><td>XS 15 · S 8 · M sold out · L sold out · XL sold out · XXL 15</td><td class="ok">✓</td></tr>
+  <tr><td>Total units</td><td>38</td><td>"38 units in total"</td><td class="ok">✓</td></tr>
+  <tr><td>Sold-out sizes said clearly</td><td>M, L, XL</td><td>"M, L, and XL currently sold out" (not "0 left")</td><td class="ok">✓</td></tr>
+  <tr><td>Product card in chat</td><td>$58.00; in stock XS, S, XXL</td><td>"Yale Dad Crewneck · $58.00 · In stock: XS, S, XXL"</td><td class="ok">✓</td></tr>
+  <tr><td>Knew which item "these" meant</td><td>The page being viewed</td><td>Answered about the Yale Dad Crewneck without being told its name</td><td class="ok">✓</td></tr>
+</table>
+<pre>SELECT size, quantity FROM inventory WHERE product_id = 'yale-dad-crewneck';
+-- XS=15, S=8, M=0, L=0, XL=0, XXL=15   (sum 38);   catalogue.price = 58.0</pre>
+
+<!-- ===================================================== 2 -->
+<h2 id="check-2">2. Dynamic search result cards after a category question <span class="pass">PASS</span></h2>
+<p><b>Steps:</b> start on the Home page → open the chat → ask a category question:</p>
+<div class="ask">What crewnecks do you have?</div>
+<figure>
+  <a href="app_check_images/category_search.png"><img src="app_check_images/category_search.png" alt="Products page filled with crewneck cards after the chat question"></a>
+  <figcaption><b>Caption:</b> One question moves the shopper from Home to the Products page, which now shows <b>all 29 crewnecks as result cards</b> (photo, brand · color, name, description, price) under "Chat search · picked by Audrey: Yale crewnecks", with the keyword chip <code>crewneck</code> and the Crewnecks filter highlighted in the sidebar. In the chat, Audrey says how many there are and shows 3 favourites as cards, plus tappable next questions.</figcaption>
+</figure>
+<p>Audrey's full reply (answered in 2.4 s):</p>
+<div class="reply">We have 29 crewneck styles, and all 29 are in stock—a lovely Yale assortment, from classic navy to collegiate gray. If I may suggest, the Champion Reverse Weave is wonderfully timeless, while the Hype and Vice Offside brings a crisp navy-and-white look; the Vintage Bulldog is charmingly spirited. I’ve laid the collection out for you on the page.</div>
+<table>
+  <tr><th>What we checked</th><th>Expected</th><th>On screen</th><th></th></tr>
+  <tr><td>Page updated by itself</td><td>Products page with crewnecks</td><td>URL <code>/products?q=Yale+crewnecks&amp;kw=crewneck&amp;category=Crewnecks</code>, heading "Yale crewnecks"</td><td class="ok">✓</td></tr>
+  <tr><td>Number of result cards</td><td>29 crewnecks in the database</td><td>29 cards; "29 products"</td><td class="ok">✓</td></tr>
+  <tr><td>Count told to the shopper</td><td>29, all in stock</td><td>"We have 29 crewneck styles, and all 29 are in stock"</td><td class="ok">✓</td></tr>
+  <tr><td>Keyword picked from the question</td><td>crewneck</td><td>Chip <code>crewneck</code>; sidebar Crewnecks (29) highlighted</td><td class="ok">✓</td></tr>
+  <tr><td>Chat cards (real price + sizes)</td><td>Champion Reverse Weave: $58, M, XL · Hype and Vice Offside: $58, all sizes · District Vintage Bulldog: $58, XS, M, L, XL, XXL</td><td>Same on all 3 cards</td><td class="ok">✓</td></tr>
+  <tr><td>Suggested next questions</td><td>Relevant follow-ups</td><td>"Show me navy crewnecks" · "Which are in medium?" · "Sort them by price"</td><td class="ok">✓</td></tr>
+</table>
+<pre>SELECT COUNT(*) FROM catalogue
+ WHERE garment_type IN ('crewneck sweatshirt','raglan crewneck sweatshirt','mockneck sweatshirt','crewneck');
+-- 29   (all 29 have at least one size in stock)</pre>
+
+<!-- ===================================================== 3 -->
+<h2 id="check-3">3. Usability feature from Problem 9: sort &amp; filter sidebar <span class="pass">PASS</span></h2>
+<p><b>Steps:</b> open <b>Products</b> → in the left sidebar choose <b>Sort by: Price high to low</b> → <b>Category: Hoodies</b> → <b>Color: Navy</b> → <b>In stock in size: L</b>.</p>
+<figure>
+  <a href="app_check_images/usability_sort_filter.png"><img src="app_check_images/usability_sort_filter.png" alt="Products page filtered to navy hoodies in size L sorted by price"></a>
+  <figcaption><b>Caption:</b> Four clicks narrow 102 products to the <b>12 navy hoodies that are in stock in Large</b>, most expensive first (the $88 Brooks Brothers full-zip, then the $68 pullovers). The heading names the selection ("Navy Hoodies"), the result bar confirms it, each option shows a count, and every product photo is on the same white, equal-size card, also from Problem 9.</figcaption>
+</figure>
+<table>
+  <tr><th>What we checked</th><th>Expected</th><th>On screen</th><th></th></tr>
+  <tr><td>Filter result</td><td>12 navy hoodies in stock in L (database)</td><td>"12 products in stock in L"; 12 cards</td><td class="ok">✓</td></tr>
+  <tr><td>Sort order</td><td>Prices high → low</td><td>$88.00, then eleven at $68.00, all in descending order</td><td class="ok">✓</td></tr>
+  <tr><td>Active choices visible</td><td>Hoodies, Navy, L highlighted</td><td>All three highlighted; Sort shows "Price: high to low"</td><td class="ok">✓</td></tr>
+  <tr><td>Choices kept in the URL</td><td>Refresh/share keeps the view</td><td><code>/products?sort=price_high&amp;category=Hoodies&amp;color=Navy&amp;size=L</code></td><td class="ok">✓</td></tr>
+  <tr><td>White photo backgrounds</td><td>All white</td><td>12 / 12 photo corners white (measured)</td><td class="ok">✓</td></tr>
+  <tr><td>Equal-size boxes</td><td>Same height</td><td>All 12 cards exactly 364 px tall</td><td class="ok">✓</td></tr>
+</table>
+<pre>SELECT COUNT(*), group_concat(price, ' ') FROM (
+  SELECT c.price FROM catalogue c JOIN inventory i USING (product_id)
+   WHERE lower(c.garment_type) LIKE '%hood%' AND lower(json_extract(c.colors,'$[0]')) LIKE '%navy%'
+     AND i.size = 'L' AND i.quantity > 0
+   ORDER BY c.price DESC);
+-- 12 | 88.0 68.0 68.0 68.0 68.0 68.0 68.0 68.0 68.0 68.0 68.0 68.0</pre>
+
+<!-- ===================================================== bugs -->
+<h2>Bugs found by this testing, and fixed</h2>
+<p>The first test run's screenshots exposed three problems. All were fixed, and every screenshot above is from the final run after the fixes.</p>
+<table>
+  <tr><th>Found</th><th>Cause</th><th>Fix</th></tr>
+  <tr><td>Yale Dad Crewneck photo had <b>black patches between the sleeves and the body</b> and a speckled dark outline</td><td>The background cleanup only whitened black connected to the photo's edge; gaps enclosed by an arm were missed</td><td>The photo cleanup (now <code>tools.prepare_product_photos()</code>) also whitens large, flat, pure-black enclosed areas (average brightness ≤ 5 of 255). Dark navy fabric shadows (average 11–15) are left alone, and black crest prints are kept. Re-scanned all 102 photos.</td></tr>
+  <tr><td>Fixed photos could still show the old version</td><td>The photo URL's version number came from the folder's timestamp, which doesn't change when files are overwritten</td><td>The version now comes from the newest photo file, so browsers fetch the fresh photos</td></tr>
+  <tr><td>After a category question, the page heading still said <b>"All the merch"</b></td><td>Chat "browse" results didn't pass Audrey's title to the page</td><td>The page now shows "Chat search · picked by Audrey" with the title and keywords. Manual filters get a matching heading (e.g. "Navy Hoodies"), and the chat title is dropped if the shopper changes the filters themselves.</td></tr>
+</table>
+
+<!-- ===================================================== how -->
+<h2>How this was tested (and how to re-run it)</h2>
+<ol>
+  <li>Start the backend from <code>backend/</code>: <code>uvicorn main:app --reload --port 8000</code></li>
+  <li>Start the website from <code>frontend/</code>: <code>npm run dev</code></li>
+  <li>Run the check from <code>frontend/</code>: <code>npm run app-check</code></li>
+</ol>
+<p>The script (<code>frontend/scripts/app_check.cjs</code>) opens headless Google Chrome, clicks and types exactly as a shopper would, waits for Audrey's reply, saves the screenshots to <code>output/app_check_images/</code>, and records everything that appeared on screen (replies, cards, counts, URLs, card heights, photo corner colors) in <code>output/app_check_images/results.json</code>. Numbers were then checked with the SQL shown under each check.</p>
+<p><b>Files for grading:</b> <code>output/app_check.html</code> (this page) · <code>output/app_check_images/inventory.png</code> · <code>output/app_check_images/category_search.png</code> · <code>output/app_check_images/usability_sort_filter.png</code> · <code>output/app_check_images/results.json</code></p>
+
+</main>
+</body>
+</html>

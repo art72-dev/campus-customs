@@ -1,0 +1,27 @@
+# Secrets
+.env
+
+# Local-only data pack: database + product photos (not in git; see README.md)
+data/
+
+# Local Problem 2 analysis (not part of the submitted tree)
+analyze_db.py
+output/db_analysis.json
+
+# Earlier draft code kept locally
+draft/
+
+# Environments, dependencies and builds
+.venv/
+venv/
+node_modules/
+dist/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+*.tmp
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/

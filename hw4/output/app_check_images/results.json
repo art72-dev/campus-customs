@@ -1,0 +1,286 @@
+{
+  "ranAt": "2026-10-07T22:42:00.572Z",
+  "site": "http://localhost:5173",
+  "viewport": "1440x900",
+  "checks": {
+    "inventory": {
+      "question": "How many of these are left in each size?",
+      "page": {
+        "url": "/products/yale-dad-crewneck",
+        "heading": "Yale Dad Crewneck",
+        "chips": [],
+        "resultBar": null,
+        "cards": [],
+        "activeFacets": [],
+        "sort": null
+      },
+      "seconds": 2.8,
+      "reply": "For the Yale Dad Crewneck, we have:\n- XS: 15\n- S: 8\n- M: sold out\n- L: sold out\n- XL: sold out\n- XXL: 15\n\nThat’s 38 units in total, with M, L, and XL currently sold out.",
+      "chatCards": [
+        "Yale Dad Crewneck · $58.00 · In stock: XS, S, XXL"
+      ],
+      "suggestions": []
+    },
+    "category": {
+      "question": "What crewnecks do you have?",
+      "page": {
+        "url": "/products?q=Yale+crewnecks&kw=crewneck&sort=featured&category=Crewnecks",
+        "heading": "Yale crewnecks",
+        "chips": [
+          "crewneck"
+        ],
+        "resultBar": "29 products · sorted by featured",
+        "cards": [
+          {
+            "name": "Baseball Left Chest Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Champion Mens Triumph Raglan Crew",
+            "meta": "CHAMPION · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Champion Reverse Weave Crewneck",
+            "meta": "CHAMPION · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Davenport College Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "District Vit Crewneck Vintage Bulldog",
+            "meta": "DISTRICT · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "District Vit Crewneck Vintage Standing Bulldog",
+            "meta": "DISTRICT · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Diving Left Chest Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Grace Hopper College Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Hype And Vice Yale University Offside Crewneck",
+            "meta": "HYPE AND VICE · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Hype And Vice Yale University Premium Crewneck",
+            "meta": "HYPE AND VICE · WHITE & CREAM",
+            "price": "$58.00"
+          },
+          {
+            "name": "Jonathan Edwards College Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Lacrosse Left Chest Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Pierson College Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Poly Twill Crewneck Arched Yale",
+            "meta": "CAMPUS CUSTOMS · WHITE & CREAM",
+            "price": "$58.00"
+          },
+          {
+            "name": "Saybrook College Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Soccer Left Chest Crewneck",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Squash Left Chest Tennis",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Super Heavyweight Crewneck Arched Yale Crest",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Timothy Dwight College Crewneck",
+            "meta": "CAMPUS CUSTOMS · NOT LISTED",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Brother Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Cousin Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Dad Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Grandpa Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Maplehouse Diana Mockneck",
+            "meta": "MAPLEHOUSE · WHITE & CREAM",
+            "price": "$45.00"
+          },
+          {
+            "name": "Yale Mom Crewneck",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Sports Creqneck Field Hockey",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Sports Crewneck Baseball",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Sports Crewneck Golf",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          },
+          {
+            "name": "Yale Sports Crewneck Volleyball",
+            "meta": "CAMPUS CUSTOMS · GRAY",
+            "price": "$58.00"
+          }
+        ],
+        "activeFacets": [
+          "Crewnecks"
+        ],
+        "sort": "featured"
+      },
+      "seconds": 2.4,
+      "reply": "We have 29 crewneck styles, and all 29 are in stock—a lovely Yale assortment, from classic navy to collegiate gray. If I may suggest, the Champion Reverse Weave is wonderfully timeless, while the Hype and Vice Offside brings a crisp navy-and-white look; the Vintage Bulldog is charmingly spirited. I’ve laid the collection out for you on the page.",
+      "chatCards": [
+        "Champion Reverse Weave Crewneck · $58.00 · In stock: M, XL",
+        "Hype And Vice Yale University Offside Crewneck · $58.00 · In stock: XS, S, M, L, XL, XXL",
+        "District Vit Crewneck Vintage Bulldog · $58.00 · In stock: XS, M, L, XL, XXL"
+      ],
+      "suggestions": [
+        "Show me navy crewnecks",
+        "Which are in medium?",
+        "Sort them by price"
+      ]
+    },
+    "usability": {
+      "steps": [
+        "Sort by: Price high to low",
+        "Category: Hoodies",
+        "Color: Navy",
+        "In stock in size: L"
+      ],
+      "page": {
+        "url": "/products?sort=price_high&category=Hoodies&color=Navy&size=L",
+        "heading": "Navy Hoodies",
+        "chips": [],
+        "resultBar": "12 products in stock in L · sorted by price: high to low",
+        "cards": [
+          {
+            "name": "Brooks Brothers Double Knit Full Zip Hoodie Yale",
+            "meta": "BROOKS BROTHERS · NAVY",
+            "price": "$88.00"
+          },
+          {
+            "name": "Basic Hoodie Big Yale",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Champion Reverse Weave Hoodie 1",
+            "meta": "CHAMPION · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Crew Left Chest Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Squash Left Chest Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "The Forest School Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Volleyball Left Chest Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Yale Aunt Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Yale Dad Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Yale Grandma Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Yale Mom Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          },
+          {
+            "name": "Yale Uncle Hoodie",
+            "meta": "CAMPUS CUSTOMS · NAVY",
+            "price": "$68.00"
+          }
+        ],
+        "activeFacets": [
+          "Hoodies",
+          "Navy",
+          "L"
+        ],
+        "sort": "price_high"
+      },
+      "cardHeights": [
+        364
+      ],
+      "whitePhotos": "12/12",
+      "pricesDescending": true
+    }
+  }
+}
