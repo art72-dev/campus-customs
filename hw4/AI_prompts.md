@@ -248,6 +248,25 @@ For each problem, record the problem number and title, the prompt I gave, a foll
     - **Corrected along the way:** "tool calls not stored anywhere" (the audit trail now logs them, redacted), the old endpoint formats, "10 safety precautions", the missing brand/color/category fields, and Node 20.19+ (not 18) for Vite 8.
   - Removed the now-unused `MAX_RESULTS` constant from `tools.py`. The previous harness is kept in the scratchpad as a backup.
 
+### Problem 13: Push to GitHub and submit the URL
+
+- **Prompt:** "Ok now problem 13- Push to Github and submit the URL. Lets put our code in folder name hw4 and push it to a public Github repository."
+- **Follow-up prompts:**
+  - "Organize it this way-" (folder tree: `hw4/` with `AI_prompts.md`, `requirements.txt`, `.env.example`, `.gitignore`, `README.md`, `frontend/`, `backend/` [`main.py`, `agent.py`, `models.py`, `tools.py`, `prompts/prompt.md`], `output/` [`harness.md`, `design.md`, `usability.md`, `app_check.html`, `app_check_images/`, `audit_trail.json`], plus a **local-only data pack** `data/` [`campus_customs.db`, `products/`] that is not in git)
+  - "The agent is 4 files- backend/: Prompts/prompt.md, agent.py, tools.py and models.py. README.md should explain how to run the front and back end after placing the data pack."
+- **Result / evidence:**
+  - **Public repo: https://github.com/art72-dev/campus-customs** (code in `hw4/`).
+  - **Organized to the tree:**
+    - **Backend:** now exactly `main.py` + the 4 agent files. The account routes and password logic moved from `auth.py` into `main.py`, and their types into `models.py`. The photo cleanup moved from `prepare_images.py` into `tools.prepare_product_photos()` (output checked pixel-identical) and now **runs automatically on the first backend start**.
+    - **Top-level files:** `requirements.txt` moved up to `hw4/`. New `.env.example` (placeholders only), `.gitignore` (keeps out `.env`, `data/`, `.venv/`, `node_modules/`, the local Problem 2 analysis and the old draft) and `README.md` (place the data pack → add secrets → run the backend → run the frontend → open the site).
+    - **Clear startup errors:** the backend now loads `hw4/.env`, and stops with a clear message if the data pack or `JWT_SECRET` is missing.
+  - **Clean-clone test before pushing:**
+    - **Backend:** a fresh Python environment from `requirements.txt`. Missing data and missing `.env` each give their clear error. With both, the backend started in 39 s, generated all 102 photos, and served products and photos; seed login and chat worked ("8 Yale Mom Hoodies left in Medium").
+    - **Frontend:** `npm ci` + `npm run build` succeeded.
+  - **Privacy check of everything published (47 files):** the only email is the test account. None of the real `.env` values appear (a flagged match was just the `yale.edu` domain). The data pack, user accounts and chat history stay local.
+  - **GitHub CLI:** the official `gh` 2.102.0 was downloaded from github.com/cli/cli (SHA-256 verified against GitHub's checksums) into `AI Foundations/tools/`. The user signed in with `gh auth login`.
+  - The repo is built in `AI Foundations/campus-customs/` from a copy of `Homework 4` (minus local-only files). `Homework 4` remains the working folder.
+
 #### Setup done before Problem 1
 
 - **Prompt:** "and move the data file I just downloaded to the hw4 folder"
